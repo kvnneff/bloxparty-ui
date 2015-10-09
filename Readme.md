@@ -1,6 +1,6 @@
-# Blox Party [![Build Status](https://travis-ci.org/kvnneff/bloxparty.svg?branch=master)](https://travis-ci.org/kvnneff/bloxparty)
+# Blox Party [![Build Status](https://travis-ci.org/kvnneff/bloxparty-ui.svg?branch=master)](https://travis-ci.org/kvnneff/bloxparty-ui)
 
-A multiplayer Tetris game built with [Electron](http://electron.atom.io/).
+A multiplayer Tetris game.
 
 ![BloxParty](screen_shot.png)
 
