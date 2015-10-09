@@ -1,0 +1,64 @@
+{
+  "name": "bloxparty",
+  "description": "Multiplayer Tetris",
+  "version": "1.0.1",
+  "author": "Kevin Neff <kvnneff@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/kvnneff/bloxparty-ui/issues"
+  },
+  "dependencies": {
+    "bloxparty-board": "git+https://github.com/kvnneff/bloxparty-board.git",
+    "bus": "^0.1.0",
+    "component-clone": "^0.2.2",
+    "component-emitter": "^1.2.0",
+    "cuid": "*",
+    "deku": "^0.5.5",
+    "deku-form": "^1.1.4",
+    "localstorage-ns": "^1.0.2",
+    "query-string": "^2.4.1",
+    "socket.io-client": "git+https://github.com/socketio/socket.io-client.git",
+    "virtual-element": "^1.2.0",
+    "wayfarer": "^5.0.1"
+  },
+  "devDependencies": {
+    "assert-element": "dekujs/assert-element",
+    "babelify": "^6.3.0",
+    "browserify": "^11.1.0",
+    "browserify-test": "^2.0.0",
+    "chokidar-cli": "^1.0.1",
+    "component-mock": "0.0.2",
+    "dependency-check": "^2.5.1",
+    "duo": "^0.15.3",
+    "duo-babel": "^6.0.0",
+    "duo-myth": "^0.2.0",
+    "fixpack": "^2.2.0",
+    "http-server": "^0.8.0",
+    "mocha": "^2.3.2",
+    "mochify": "^2.13.0",
+    "myth": "^1.5.0",
+    "standard": "^5.2.2"
+  },
+  "homepage": "https://github.com/kvnneff/bloxparty-ui#readme",
+  "keywords": [
+    "game",
+    "multiplayer",
+    "tetris"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "productName": "BloxParty",
+  "repository": "https://github.com/kvnneff/bloxparty-ui.git",
+  "scripts": {
+    "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --ignore='node_modules/(bloxparty-board|bus|component-clone|component-emitter|cuid|deku|deku-form|moniker|query-string|socket.io-client|virtual-element|wayfarer)' --prune --overwrite --asar --all --version=$npm_package_electronVersion",
+    "build-css": "duo --use duo-myth lib/index.css",
+    "build-js": "browserify lib/index.js -t [babelify --ignore socket.io-client --ignore electron-debug] --outfile build/lib/index.js",
+    "build-ui": "npm run build-css && npm run build-js",
+    "lint": "standard ./lib/**/*.js && fixpack",
+    "server": "http-server ./",
+    "start": "npm run build-ui && electron .",
+    "test": "mochify --transform [babelify --ignore socket.io-client --ignore electron-debug] test/index.js",
+    "watch": "npm run watch-css & npm run watch-js",
+    "watch-css": "chokidar './lib/**/*.css' -c 'npm run build-css'",
+    "watch-js": "chokidar './lib/**/*.js' -c 'npm run build-js'"
+  }
+}

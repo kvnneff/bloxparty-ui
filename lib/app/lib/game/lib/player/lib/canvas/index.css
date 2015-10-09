@@ -1,0 +1,23 @@
+.GamePlayerCanvas {
+  border: 1px solid #0080AB;
+  background: #00202B;
+  display: inline-block;
+  width: 250px;
+  height: 500px;
+  position: relative;
+}
+
+
+.GamePlayerCanvas-canvas.is-grid {
+  width: 250px;
+  height: 500px;
+  position: absolute;
+  z-index: 1;
+}
+
+.GamePlayerCanvas-canvas.is-shape {
+  width: 250px;
+  height: 500px;
+  position: absolute;
+  z-index: 5;
+}
