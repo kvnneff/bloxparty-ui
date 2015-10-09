@@ -36,6 +36,7 @@
     "mocha": "^2.3.2",
     "mochify": "^2.13.0",
     "myth": "^1.5.0",
+    "opn-cli": "^1.0.0",
     "standard": "^5.2.2"
   },
   "homepage": "https://github.com/kvnneff/bloxparty-ui#readme",
@@ -49,14 +50,13 @@
   "productName": "BloxParty",
   "repository": "https://github.com/kvnneff/bloxparty-ui.git",
   "scripts": {
-    "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --ignore='node_modules/(bloxparty-board|bus|component-clone|component-emitter|cuid|deku|deku-form|moniker|query-string|socket.io-client|virtual-element|wayfarer)' --prune --overwrite --asar --all --version=$npm_package_electronVersion",
     "build-css": "duo --use duo-myth lib/index.css",
-    "build-js": "browserify lib/index.js -t [babelify --ignore socket.io-client --ignore electron-debug] --outfile build/lib/index.js",
-    "build-ui": "npm run build-css && npm run build-js",
+    "build-js": "browserify lib/index.js -t [babelify --ignore socket.io-client] --outfile build/lib/index.js",
+    "build": "npm run build-css && npm run build-js",
     "lint": "standard ./lib/**/*.js && fixpack",
     "server": "http-server ./",
-    "start": "npm run build-ui && electron .",
-    "test": "mochify --transform [babelify --ignore socket.io-client --ignore electron-debug] test/index.js",
+    "start": "npm run build && npm run server && opn http://localhost:3001",
+    "test": "mochify --transform [babelify --ignore socket.io-client] test/index.js",
     "watch": "npm run watch-css & npm run watch-js",
     "watch-css": "chokidar './lib/**/*.css' -c 'npm run build-css'",
     "watch-js": "chokidar './lib/**/*.js' -c 'npm run build-js'"
